@@ -1,10 +1,4 @@
-# Country centroids dataset
-
-Country centroids based on the [geoBoundaries.org](https://www.geoboundaries.org/) ADM0 boundaries. Used in our point maps.
-
-This dataset is updated on the first of the month if new data is available, or otherwise when run manually.
-
-## Data
+## `/data`
 
 Two files are available:
 
@@ -18,12 +12,3 @@ If you don't want centroids that might be in the water for countries with severa
 ![[Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0)](https://mirrors.creativecommons.org/presskit/buttons/80x15/png/by.png)
 
 Please acknowledge both **360info** and [**geoboundaries.org**](https://geoboundaries.org) when you use it.
-
-## Dependencies
-
-Dependency lockfile is generated using the `{capsule}` package:
-
-```r
-list.files("R", pattern = glob2rx("*.r"), full.names = TRUE) |>
-  capsule::capshot()
-```
