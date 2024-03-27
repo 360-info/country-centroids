@@ -12,6 +12,7 @@ country_url <- paste0(
 if (!file.exists("etag")) {
 
   # no existing etag: need new boundaries
+  message("No existing etag found; update needed")
   write_to_gha_env("IS_STALE", "true")
 
 } else {
@@ -33,6 +34,9 @@ if (!file.exists("etag")) {
   current_etag
 
   # report result to gha
-  write_to_gha_env("IS_STALE", tolower(as.character(current_etag != new_etag)))
+  is_stale <- tolower(as.character(current_etag != new_etag))
+  message(paste("Existing etag. Is it stale?", is_stale))
+
+  write_to_gha_env("IS_STALE", is_stale)
 
 }

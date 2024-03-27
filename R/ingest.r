@@ -1,6 +1,11 @@
 library(tidyverse)
 library(sf)
 library(lwgeom)
+source(file.path("R", "util.r"))
+
+# ingest.r: download simplified agm0 (country) boundaries
+# from geoboundaries.org, calculate centroids and run them
+# off (twice)
 
 country_url <- paste0(
   "https://github.com/wmgeolab/geoBoundaries/",
@@ -15,7 +20,6 @@ sf_use_s2(FALSE)
 
 # load the data and repair it
 read_sf(country_path) |>
-  # st_make_valid() |>
   select(-id, -shapeType) ->
 regions
 
