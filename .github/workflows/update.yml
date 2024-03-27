@@ -1,0 +1,82 @@
+
+# workflow to update monthly ocean temps
+
+# run on the 1st of the month or on demand
+on:
+  schedule:
+    - cron: '27 15 1 * *'
+  workflow_dispatch:
+
+name: Update country centroids
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: r-lib/actions/setup-r@v2
+
+      - name: Install Linux system dependencies
+        run: |
+          sudo apt update
+          sudo apt-get install libcurl4-openssl-dev
+          sudo apt-get install libssl-dev
+          sudo apt-get install libharfbuzz-dev libfribidi-dev
+          sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev
+      
+      - name: Restore packages with renv
+        uses: r-lib/actions/setup-renv@v2
+
+      # sets env.IS_STALE=TRUE if new boundaries are available
+      - name: Check if update is required
+        run: Rscript R/check.r
+
+      # analysis sets env.DAILY_UPDATED=TRUE and end.DAILY_RUN_END=...
+      # when it successfully runs
+      # (R puts out uppercase strings for env vars, not actual bools)
+
+      - name: Run the analysis
+        if: env.IS_STALE == 'TRUE'
+        run: Rscript R/ingest.r
+    
+      - name: Skip the analysis
+        if: env.IS_STALE == 'FALSE'
+        run: echo "Skipping update (remote version still current)"
+      
+      # commit and push
+      - name: Commit and push updated results
+        if: env.UPDATED == 'TRUE'
+        run: |
+          git config --local user.name actions-user
+          git config --local user.email "actions@github.com"
+          git add data/*.csv
+          git diff-index --quiet HEAD || git commit -m "Ingest new results via GitHub Actions"
+          git push
+
+      # make a release if there's new data
+      - name: Publish release
+        if: env.UPDATED == 'TRUE'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v$(date +'%Y-%m-%d')" \
+            --repo="$GITHUB_REPOSITORY" \
+            --title="Country centroids: v$(date +'%Y-%m-%d')" \
+            --generate-notes
+
+      - name: Update Slack
+        uses: slackapi/slack-github-action@v1.24.0
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          payload: |
+            {
+              "event_type": "${{ github.event_name }}",
+              "run_end": "${{ env.RUN_END }}",
+              "outcome_emoji": "${{ (env.IS_STALE == 'FALSE') && '⏰' || (env.UPDATED == 'TRUE') && '✅' || '❓' }}",
+              "outcome_long": "${{ (env.IS_STALE == 'FALSE') && 'Update skipped (no new data)' || (env.UPDATED == 'TRUE') && 'New data added!' || 'Workflow successfully executed, but the analysis script did not sign off properly. Something may not be right—this should be followed up.' }}",
+              "workflow_name": "Country centroids: monthly ingest"
+            }
