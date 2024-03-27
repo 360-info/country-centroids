@@ -357,6 +357,12 @@
       "Version": "1.9.2",
       "Repository": "CRAN"
     },
+    "lwgeom": {
+      "Source": "Repository",
+      "Package": "lwgeom",
+      "Version": "0.2-14",
+      "Repository": "CRAN"
+    },
     "magrittr": {
       "Source": "Repository",
       "Package": "magrittr",

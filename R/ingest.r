@@ -1,5 +1,6 @@
 library(tidyverse)
 library(sf)
+library(lwgeom)
 
 country_url <- paste0(
   "https://github.com/wmgeolab/geoBoundaries/",
