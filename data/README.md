@@ -14,6 +14,8 @@ Columns include:
 
 If you don't want centroids that might be in the water for countries with several landmasses, use the former. otherwise, use the latter.
 
+The `etag` file contains the [etag](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag) of the boundary source file from geobounaries.org.
+
 ## ♻️ Use + Remix rights
 
 ![[Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0)](https://mirrors.creativecommons.org/presskit/buttons/80x15/png/by.png)
