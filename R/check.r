@@ -29,14 +29,16 @@ if (!file.exists("etag")) {
   new_etag
 
   # get the existing etag from disk
-  here("etag") |>
-    readLines() ->
-  current_etag
-
+  current_etag <- readLines("etag")
+  
   # report result to gha
   is_stale <- tolower(as.character(current_etag != new_etag))
   message(paste("Existing etag. Is it stale?", is_stale))
 
   write_to_gha_env("IS_STALE", is_stale)
+
+  if (is_stale) {
+    writeLines(new_etag, "etag")
+  }
 
 }
