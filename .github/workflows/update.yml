@@ -53,7 +53,7 @@ jobs:
           git config --local user.name actions-user
           git config --local user.email "actions@github.com"
           git add data/*.csv
-          git add etag
+          git add data/etag
           git diff-index --quiet HEAD || git commit -m "Ingest new results via GitHub Actions"
           git push
 
