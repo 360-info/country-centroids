@@ -1,0 +1,20 @@
+{
+  "upload_type": "dataset",
+  "creators": [
+    {
+        "orcid": "0000-0002-5024-6207",
+        "affiliation": "360info",
+        "name": "James Goldie"
+    }
+  ],
+  "description": "<p>Country centroids based on the <a href=\"https://geoboundaries.org\">geoBoundaries.org</a> ADM0 boundaries.</p><p>If you need to make a map where countries are represented by points (like a bubble map or an arc map), you'll want centroids!</p><p>This dataset is updated on the first of the month if new data is available, or otherwise when run manually.</p>",
+  "license": "cc-by",
+  "keywords": [
+    "adm0",
+    "country",
+    "countries",
+    "centroid",
+    "centroids",
+    "geoboundaries"
+  ]
+}
