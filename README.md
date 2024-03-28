@@ -1,6 +1,8 @@
 # Country centroids dataset
 
-Country centroids based on the [geoBoundaries.org](https://www.geoboundaries.org/) ADM0 boundaries. If you need to make a map where countries are represented by points (like a bubble map or an [arc map](https://360info.org/interactive-who-supplies-and-receives-arms)), you'll want centroids!
+Country centroids based on the [geoBoundaries.org](https://www.geoboundaries.org/) ADM0 boundaries.
+
+If you need to make a map where countries are represented by points (like a bubble map or an [arc map](https://360info.org/interactive-who-supplies-and-receives-arms)), you'll want centroids!
 
 This dataset is updated on the first of the month if new data is available, or otherwise when run manually.
 
@@ -21,7 +23,7 @@ Please acknowledge both **360info** and [**geoboundaries.org**](https://geobound
 
 ## Dependencies
 
-Dependency lockfile is generated using the `{capsule}` package:
+Dependency lockfile is generated using the [`{capsule}`](https://github.com/MilesMcBain/capsule) package:
 
 ```r
 list.files("R", pattern = glob2rx("*.r"), full.names = TRUE) |>
