@@ -1,6 +1,6 @@
 # Country centroids dataset
 
-Country centroids based on the [geoBoundaries.org](https://www.geoboundaries.org/) ADM0 boundaries. Used in our point maps.
+Country centroids based on the [geoBoundaries.org](https://www.geoboundaries.org/) ADM0 boundaries. If you need to make a map where countries are represented by points (like a bubble map or an [arc map](https://360info.org/interactive-who-supplies-and-receives-arms)), you'll want centroids!
 
 This dataset is updated on the first of the month if new data is available, or otherwise when run manually.
 
@@ -11,7 +11,7 @@ Two files are available:
 - [`data/centroids-oflargestpoly.csv`](data/centroids-oflargestpoly.csv): centroids of countries using the largest polygon
 - [`data/centroids.csv`](data/centroids.csv): centroids of countries using _all_ polygons
 
-If you don't want centroids that might be in the water for countries with several landmasses, use the former. otherwise, use the latter.
+If you don't want centroids that might be in the water for countries with several landmasses (like, say, [Indonesia](https://maps.app.goo.gl/ntRHKemzwousEWoq8)), use the former. Otherwise, use the latter.
 
 ## ♻️ Use + Remix rights
 
