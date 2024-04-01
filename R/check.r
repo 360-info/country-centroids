@@ -39,7 +39,7 @@ if (!file.exists("data/etag")) {
 
 }
 
-if (!file.exists("data/etag") || is_stale) {
+if (!file.exists("data/etag") || is_stale == "true") {
   message("Writing out new etag")
   writeLines(new_etag, "data/etag")
 }
