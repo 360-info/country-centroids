@@ -15,6 +15,10 @@ Two files are available:
 
 If you don't want centroids that might be in the water for countries with several landmasses (like, say, [Indonesia](https://maps.app.goo.gl/ntRHKemzwousEWoq8)), use the former. Otherwise, use the latter.
 
+> [!tip]
+>
+> Note that some non-country territories might be missing from this dataset. See [`data/README.md`](data/README.md) for more details.
+
 ## ♻️ Use + Remix rights
 
 ![[Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0)](https://mirrors.creativecommons.org/presskit/buttons/80x15/png/by.png)
