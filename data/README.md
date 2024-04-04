@@ -12,9 +12,16 @@ Columns include:
 - `lat`: latitutde of the centroid
 - `lon`: longitude of the centroid
 
-If you don't want centroids that might be in the water for countries with several landmasses, use the former. otherwise, use the latter.
+If you don't want centroids that might be in the water for countries with several landmasses (such as Indonesia, or many island chains), use the former. otherwise, use the latter.
 
-These centroids are calculated based on the [geoboundaries.org](https://geoboundaries.org) global file, which has some simplification done and which allocates disputed areas. If that's a problem for you, consider using their individual country files. (But if you're just after centroids, this is probably fine!)
+> [!tip]
+> **Why can't I see a country in this dataset?**
+>
+> These centroids are calculated from the [geoboundaries.org](https://geoboundaries.org) global file, which merges several non-country territories (eg. American Samoa) into the boundaries of their sovereign nation, as well as using rules to handle disputed territories.
+>
+> If you can't find a country or territory here, try searching the [individual country files](https://www.geoboundaries.org/countryDownloads.html) for it.
+>
+> If you're working with historical data, also consider that countries change over time.
 
 ## Other files
 
